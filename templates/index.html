@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Pessoas</title>
+</head>
+<body>
+    <h1>Cadastrar Pessoa Necessitada</h1>
+    <form method="post">
+        Nome: <input type="text" name="nome" required><br>
+        Endereço: <input type="text" name="endereco" required><br>
+        Observação: <input type="text" name="observacao"><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <br>
+    <a href="{{ url_for('lista') }}">Ver lista de cadastros</a>
+</body>
+</html>
