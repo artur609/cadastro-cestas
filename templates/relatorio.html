@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relatório de Cadastros e Cestas</title>
+</head>
+<body>
+    <h1>Relatório de Cadastros e Cestas</h1>
+    {% for cadastro in cadastros %}
+        <h2>{{ cadastro.nome }}</h2>
+        <p><b>Endereço:</b> {{ cadastro.endereco }}</p>
+        <p><b>Observação:</b> {{ cadastro.observacao }}</p>
+        <p><b>Cestas Recebidas:</b></p>
+        <ul>
+            {% for cesta in cadastro.cestas_recebidas %}
+                <li>{{ cesta.descricao }} ({{ cesta.data_entrega }})</li>
+            {% endfor %}
+        </ul>
+        <hr>
+    {% endfor %}
+    <a href="{{ url_for('relatorio_txt') }}">Baixar Relatório em TXT</a> |
+    <a href="{{ url_for('lista') }}">Voltar</a>
+</body>
+</html>
