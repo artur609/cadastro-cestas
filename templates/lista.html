@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Cadastros</title>
+</head>
+<body>
+    <h1>Lista de Pessoas Cadastradas</h1>
+    <table border="1">
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Observação</th>
+            <th>Cestas Recebidas</th>
+            <th>Nova Entrega</th>
+        </tr>
+        {% for cadastro in cadastros %}
+        <tr>
+            <td>{{ cadastro.nome }}</td>
+            <td>{{ cadastro.endereco }}</td>
+            <td>{{ cadastro.observacao }}</td>
+            <td>
+                <ul>
+                {% for cesta in cadastro.cestas_recebidas %}
+                    <li>{{ cesta.descricao }} ({{ cesta.data_entrega }})</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <form method="post" action="{{ url_for('entrega') }}">
+                    <input type="hidden" name="nome" value="{{ cadastro.nome }}">
+                    <input type="text" name="cesta" placeholder="Descrição da cesta" required>
+                    <button type="submit">Registrar Entrega</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Novo Cadastro</a> |
+    <a href="{{ url_for('relatorio') }}">Relatório</a>
+</body>
+</html>
